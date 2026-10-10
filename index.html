@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Build Swap</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <h1>Build Swap</h1>
+      <p class="tagline">Move a Deadlock hero build onto another hero.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="step-paste">
+      <h2 class="bar" id="step-paste"><span class="step">1</span>Paste a build</h2>
+      <div class="paste-row">
+        <textarea id="input" spellcheck="false" autocomplete="off"
+          placeholder="Copy a build in game, then paste it here (or press Ctrl+V anywhere)"></textarea>
+        <button id="pasteBtn" class="dl-btn" type="button">Paste</button>
+      </div>
+      <p id="inputError" class="error" hidden></p>
+
+      <div id="buildCard" class="build-card" hidden>
+        <img id="bcPortrait" class="bc-portrait" alt="">
+        <div class="bc-body">
+          <div id="bcName" class="bc-name"></div>
+          <dl class="bc-meta">
+            <div><dt>Hero</dt><dd id="bcHero"></dd></div>
+            <div><dt>Build ID</dt><dd id="bcId"></dd></div>
+            <div><dt>Updated</dt><dd id="bcUpdated"></dd></div>
+          </dl>
+          <p id="bcDesc" class="bc-desc" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="step-hero">
+      <h2 class="bar" id="step-hero"><span class="step">2</span>Choose the new hero</h2>
+      <input id="search" class="search" type="search" placeholder="Filter heroes" autocomplete="off">
+      <div id="grid" class="hero-grid" role="listbox" aria-label="Heroes"></div>
+
+      <details class="advanced">
+        <summary>Advanced</summary>
+        <label class="field">
+          <span>Hero ID</span>
+          <input id="heroIdInput" type="number" min="0" inputmode="numeric" placeholder="e.g. 88">
+          <button id="heroIdBtn" class="dl-btn dl-btn--small" type="button">Use ID</button>
+        </label>
+        <label class="field field--stack">
+          <span>Reference build <small>(optional)</small></span>
+          <textarea id="refInput" spellcheck="false" autocomplete="off"
+            placeholder="Paste any build from the target hero to also copy its author"></textarea>
+        </label>
+        <p id="refStatus" class="hint"></p>
+      </details>
+    </section>
+
+    <section class="panel" id="result" aria-labelledby="step-copy" hidden>
+      <h2 class="bar" id="step-copy"><span class="step">3</span>Paste it in game</h2>
+      <div class="swap">
+        <figure><img id="fromImg" alt=""><figcaption id="fromName"></figcaption></figure>
+        <span class="swap-arrow" aria-hidden="true">→</span>
+        <figure><img id="toImg" alt=""><figcaption id="toName"></figcaption></figure>
+      </div>
+      <p id="outName" class="out-name"></p>
+      <div class="paste-row">
+        <textarea id="output" readonly spellcheck="false"></textarea>
+        <button id="copyBtn" class="dl-btn dl-btn--active" type="button">Copy</button>
+      </div>
+      <p class="hint">Ability upgrade order is hero-specific. Re-check it after importing.</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -33,7 +33,7 @@
 * { box-sizing: border-box; }
 
 html {
-  background: var(--page) url("https://deadlock.wiki/images/9/96/Broadway_01.jpg") center top / cover fixed;
+  background: var(--page) url("https://cdn.deadlock.wiki/Broadway_01.jpg") center top / cover fixed;
   scrollbar-color: #706f6d #191715;
 }
 
